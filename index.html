@@ -77,7 +77,8 @@ cat << 'EOF' > index.html
       display: inline-block;
       font-size: 12px;
       color: #8c8c8c;
-      transform: translateY(1px);
+      transform: translateY(1px) rotate(0deg);
+      transition: transform 0.15s ease;
     }
     .sidebar-nav a:hover {
       background: transparent;
@@ -91,8 +92,8 @@ cat << 'EOF' > index.html
       box-shadow: none;
     }
     .sidebar-nav .active::before,
-    .sidebar-nav .active:hover::before {
-      content: '▾';
+    .sidebar-nav .is-open::before {
+      transform: translateY(1px) rotate(90deg);
       color: #5a5a5a;
     }
     .sidebar-nav ul ul a {
@@ -214,6 +215,41 @@ cat << 'EOF' > index.html
       const observer = new MutationObserver(cleanTitles);
       observer.observe(document.getElementById('app'), { childList: true, subtree: true });
       cleanTitles();
+    });
+  </script>
+  <script>
+    // Toggle chevrons for sidebar items with children
+    document.addEventListener('DOMContentLoaded', () => {
+      const root = document.querySelector('.sidebar-nav');
+      if (!root) return;
+
+      const syncActive = () => {
+        root.querySelectorAll('a.is-open').forEach((a) => a.classList.remove('is-open'));
+        root.querySelectorAll('li > a.active').forEach((a) => {
+          a.classList.add('is-open');
+          let parent = a.parentElement?.parentElement?.closest('li')?.querySelector('a');
+          if (parent) parent.classList.add('is-open');
+        });
+      };
+
+      const attach = () => {
+        root.querySelectorAll('li > a').forEach((a) => {
+          const hasChildList = a.parentElement?.querySelector('ul');
+          if (!hasChildList) return;
+          a.addEventListener('click', () => {
+            a.classList.toggle('is-open');
+          });
+        });
+      };
+
+      syncActive();
+      attach();
+      // Re-sync when Docsify updates the sidebar
+      const observer = new MutationObserver(() => {
+        syncActive();
+        attach();
+      });
+      observer.observe(root, { childList: true, subtree: true });
     });
   </script>
 
