@@ -1,0 +1,4 @@
+- [Welcome](README.md)
+- Projects
+  - [Starting a project](docs/projects/starting-a-project/README.md)
+  - [Field mapping](docs/projects/fieldmapping/Mapping.md)

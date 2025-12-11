@@ -1,10 +1,76 @@
 cat << 'EOF' > index.html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SparrowGenie Help Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
+  <style>
+    :root {
+      --sg-blue: #2563eb;
+      --sg-surface: #f8fafc;
+      --sg-border: #e2e8f0;
+      --sg-text: #0f172a;
+    }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: radial-gradient(circle at 20% 20%, #eef2ff 0, transparent 25%), radial-gradient(circle at 80% 0%, #e0f2fe 0, transparent 20%), #f8fafc;
+      color: var(--sg-text);
+    }
+    .sidebar {
+      border-right: 1px solid var(--sg-border);
+      background: #ffffffcc;
+      backdrop-filter: blur(6px);
+    }
+    .sidebar-nav a {
+      border-radius: 8px;
+      padding: 6px 10px;
+    }
+    .sidebar-nav a:hover {
+      background: #e5edff;
+      color: #1d4ed8;
+    }
+    .content {
+      background: #fff;
+      border: 1px solid var(--sg-border);
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+      border-radius: 16px;
+      padding: 32px 36px;
+      margin: 24px;
+    }
+    .app-name {
+      font-weight: 700;
+      color: var(--sg-blue);
+    }
+    .markdown-section h1,
+    .markdown-section h2,
+    .markdown-section h3 {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .markdown-section code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid var(--sg-border);
+    }
+    .markdown-section blockquote {
+      border-left: 4px solid var(--sg-blue);
+      background: #eff6ff;
+      color: #0f172a;
+      padding: 12px 14px;
+      border-radius: 10px;
+    }
+    .search .input-wrap input {
+      border-radius: 10px;
+      border: 1px solid var(--sg-border);
+      padding: 10px 12px;
+    }
+  </style>
 </head>
 <body>
   <div id="app"></div>
@@ -14,9 +80,15 @@ cat << 'EOF' > index.html
       name: 'SparrowGenie Help Center',
       repo: '',
       loadSidebar: true,
-      subMaxLevel: 3,
+      maxLevel: 3,
+      subMaxLevel: 2,
       auto2top: true,
-      search: 'auto'
+      themeColor: '#2563eb',
+      search: {
+        placeholder: 'Search help...',
+        noData: 'No matches found',
+        depth: 3
+      }
     };
   </script>
 
@@ -24,4 +96,3 @@ cat << 'EOF' > index.html
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
 </body>
 </html>
-EOF
