@@ -26,9 +26,3 @@ Choose a topic to begin:
 - Auto map similar cells
 - Undo / Redo
 - Reset and start again
-
-### Completing Mapping
-- Reviewing mapped items
-- What happens when you click Finish mapping
-
-Last updated: test deploy divyaraj
