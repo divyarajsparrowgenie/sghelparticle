@@ -37,13 +37,20 @@ cat << 'EOF' > index.html
       backdrop-filter: blur(8px);
     }
     .sidebar-nav a {
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 8px 12px;
-      transition: background 0.2s ease, color 0.2s ease;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     }
     .sidebar-nav a:hover {
       background: rgba(46, 102, 109, 0.12);
       color: var(--twigs-primary-strong);
+    }
+    .sidebar-nav .active,
+    .sidebar-nav .active:hover {
+      background: rgba(46, 102, 109, 0.16);
+      color: var(--twigs-primary-strong);
+      border: 1px solid var(--twigs-primary);
+      box-shadow: none;
     }
     .content {
       background: var(--twigs-card);
@@ -117,6 +124,19 @@ cat << 'EOF' > index.html
         depth: 3
       }
     };
+  </script>
+  <script>
+    // Remove default title tooltips added to sidebar links
+    document.addEventListener('DOMContentLoaded', () => {
+      const cleanTitles = () => {
+        document.querySelectorAll('.sidebar-nav a[title]').forEach((a) => {
+          a.removeAttribute('title');
+        });
+      };
+      const observer = new MutationObserver(cleanTitles);
+      observer.observe(document.getElementById('app'), { childList: true, subtree: true });
+      cleanTitles();
+    });
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
