@@ -31,5 +31,5 @@ Follow these steps to set up a new SparrowGenie project from scratch.
 - Run a quick search for blocked items (security questionnaires, DPAs, SLAs) and request them early.
 
 ## Done?
-Move on to `Field mapping` to normalize the template and start drafting.***
+Move on to `Field mapping` to normalize the template and start drafting.
 
