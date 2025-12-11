@@ -1,6 +1,0 @@
-site_name: SparrowGenie Help Center
-theme:
-  name: material
-
-nav:
-  - Home: index.md
