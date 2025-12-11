@@ -10,65 +10,92 @@ cat << 'EOF' > index.html
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsify/themes/vue.css" />
   <style>
+    /* Twigs-inspired palette per company theming guidelines */
     :root {
-      --sg-blue: #2563eb;
-      --sg-surface: #f8fafc;
-      --sg-border: #e2e8f0;
-      --sg-text: #0f172a;
+      --twigs-primary: #2e666d;
+      --twigs-primary-strong: #24545a;
+      --twigs-surface: #f7f9fa;
+      --twigs-card: #ffffff;
+      --twigs-border: #d9e2e5;
+      --twigs-text: #1f2a32;
+      --twigs-muted: #51606a;
     }
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background: radial-gradient(circle at 20% 20%, #eef2ff 0, transparent 25%), radial-gradient(circle at 80% 0%, #e0f2fe 0, transparent 20%), #f8fafc;
-      color: var(--sg-text);
+      background: radial-gradient(circle at 15% 20%, #eaf3f4 0, transparent 28%), radial-gradient(circle at 85% 10%, #e2eff0 0, transparent 22%), var(--twigs-surface);
+      color: var(--twigs-text);
+    }
+    a {
+      color: var(--twigs-primary);
+    }
+    a:hover {
+      color: var(--twigs-primary-strong);
     }
     .sidebar {
-      border-right: 1px solid var(--sg-border);
+      border-right: 1px solid var(--twigs-border);
       background: #ffffffcc;
-      backdrop-filter: blur(6px);
+      backdrop-filter: blur(8px);
     }
     .sidebar-nav a {
-      border-radius: 8px;
-      padding: 6px 10px;
+      border-radius: 10px;
+      padding: 8px 12px;
+      transition: background 0.2s ease, color 0.2s ease;
     }
     .sidebar-nav a:hover {
-      background: #e5edff;
-      color: #1d4ed8;
+      background: rgba(46, 102, 109, 0.12);
+      color: var(--twigs-primary-strong);
     }
     .content {
-      background: #fff;
-      border: 1px solid var(--sg-border);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
-      border-radius: 16px;
-      padding: 32px 36px;
-      margin: 24px;
+      background: var(--twigs-card);
+      border: 1px solid var(--twigs-border);
+      box-shadow: 0 12px 36px rgba(12, 23, 38, 0.08);
+      border-radius: 18px;
+      padding: 34px 38px;
+      margin: 26px;
     }
     .app-name {
       font-weight: 700;
-      color: var(--sg-blue);
+      color: var(--twigs-primary);
     }
     .markdown-section h1,
     .markdown-section h2,
     .markdown-section h3 {
       font-weight: 700;
-      color: #0f172a;
+      color: var(--twigs-text);
+    }
+    .markdown-section h1 {
+      border-bottom: 1px solid var(--twigs-border);
+      padding-bottom: 6px;
+    }
+    .markdown-section p {
+      color: var(--twigs-muted);
     }
     .markdown-section code {
-      background: #f1f5f9;
+      background: #eef4f6;
       padding: 2px 6px;
       border-radius: 6px;
-      border: 1px solid var(--sg-border);
+      border: 1px solid var(--twigs-border);
+      color: var(--twigs-primary-strong);
     }
     .markdown-section blockquote {
-      border-left: 4px solid var(--sg-blue);
-      background: #eff6ff;
-      color: #0f172a;
+      border-left: 4px solid var(--twigs-primary);
+      background: #e9f2f3;
+      color: var(--twigs-text);
       padding: 12px 14px;
       border-radius: 10px;
     }
     .search .input-wrap input {
-      border-radius: 10px;
-      border: 1px solid var(--sg-border);
-      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--twigs-border);
+      padding: 11px 14px;
+    }
+    .search .clear-button svg {
+      color: var(--twigs-muted);
+    }
+    .search .results-panel {
+      border-radius: 12px;
+      border: 1px solid var(--twigs-border);
+      box-shadow: 0 8px 30px rgba(12, 23, 38, 0.12);
     }
   </style>
 </head>
@@ -83,7 +110,7 @@ cat << 'EOF' > index.html
       maxLevel: 3,
       subMaxLevel: 2,
       auto2top: true,
-      themeColor: '#2563eb',
+      themeColor: '#2e666d',
       search: {
         placeholder: 'Search help...',
         noData: 'No matches found',
